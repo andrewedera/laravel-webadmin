@@ -1,6 +1,6 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600|Poppins:400,500,600");
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600|Poppins:400,500,600");
 
 // Variables
 @import "variables";
@@ -11,4 +11,10 @@
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.invalid-feedback {
+	strong {
+		text-shadow: 0px 1px 5px rgb(0, 0, 0);
+	}
 }
