@@ -7,14 +7,24 @@
 
 // Bootstrap
 //@import '~bootstrap/scss/bootstrap';
+@import '~mdi/scss/materialdesignicons';
+@import '~simple-line-icons/scss/simple-line-icons';
+
+.auth {
+	.form-control {
+		font-weight: 500;
+	}
+}
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.invalid-feedback {
-	strong {
-		text-shadow: 0px 1px 5px rgb(0, 0, 0);
+.auth-form-dark {
+	.invalid-feedback {
+		strong {
+			text-shadow: 0px 1px 5px rgb(0, 0, 0);
+		}
 	}
 }

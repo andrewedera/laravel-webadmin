@@ -1,4 +1,4 @@
-@extends('layouts.partials')
+@extends('layouts.blank')
 
 @section('content')
 <div class="container-scroller">

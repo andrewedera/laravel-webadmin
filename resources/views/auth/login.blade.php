@@ -1,4 +1,4 @@
-@extends('layouts.partials')
+@extends('layouts.blank')
 
 @section('content')
   <div class="container-scroller">
@@ -35,7 +35,8 @@
                   <button type="submit" class="btn btn-block btn-warning btn-lg font-weight-medium">Login</button>
                 </div>
                 <div class="mt-3 text-center">
-                  <a href="{{ route('password.request') }}" class="auth-link text-white">Forgot password?</a>
+                  <a href="{{ route('register') }}" class="auth-link text-white float-left">Register</a>
+                  <a href="{{ route('password.request') }}" class="auth-link text-white float-right">Forgot password?</a>
                 </div>                
               </form>
             </div>
