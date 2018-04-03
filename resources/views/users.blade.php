@@ -5,26 +5,30 @@
   <div class="col-12 grid-margin">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title mb-4">Orders</h5>
+        <h3 class="card-title mb-4">Users</h3>
         <div class="table-responsive">
-          <table class="table center-aligned-table table-striped">
+          <table id="users_table" class="table center-aligned-table table-striped pt-1 pb-4">
             <thead>
               <tr>
-                <th class="border-bottom-0">Name</th>
-                <th class="border-bottom-0">Username</th>
-                <th class="border-bottom-0">Email</th>
-                <th class="border-bottom-0">Active</th>
-                <th class="border-bottom-0"></th>
-                <th class="border-bottom-0"></th>
+                <th></th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Active</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="users-table">
             @foreach ($users as $user)
               <tr>
+                <td></td>
+                <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->username}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{ ($user->isActive) ? '<label class="badge badge-teal">Active</label>' : '<label class="badge badge-danger">Inactive</label>' }}</td>
+                <td><a href="#" data-id="{{$user->id}}">{!! ($user->isActive) ? '<label class="badge badge-teal">Active</label>' : '<label class="badge badge-danger">Inactive</label>' !!}</a></td>
                 <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
                 <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
               </tr>

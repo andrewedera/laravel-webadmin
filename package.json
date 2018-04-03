@@ -20,6 +20,11 @@
         "popper.js": "^1.12"
     },
     "dependencies": {
+        "datatables.net-bs4": "^1.10.16",
+        "datatables.net-fixedheader-bs4": "^3.1.3",
+        "datatables.net-responsive-bs4": "^2.2.1",
+        "datatables.net-rowgroup-bs4": "^1.0.2",
+        "datatables.net-select-bs4": "^1.2.5",
         "mdi": "^2.2.43",
         "simple-line-icons": "^2.4.1"
     }

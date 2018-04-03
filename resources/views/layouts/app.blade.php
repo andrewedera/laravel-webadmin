@@ -26,6 +26,7 @@
                 <div class="container-fluid page-body-wrapper">
                     @include('partials.sidebar')
                     <div class="main-panel">
+                        {{-- <div class="loader-wrapper"><div class="loader"></div></div> --}}
                         <div class="content-wrapper">
                             @yield('content')
                         </div>

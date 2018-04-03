@@ -6,10 +6,51 @@
  */
 
 require('./bootstrap');
+require('datatables.net-bs4');
+require('datatables.net-fixedheader');
+require('datatables.net-responsive');
+require('datatables.net-rowgroup');
+require('datatables.net-select');
 
 (function($) {
   'use strict';
   $(function() {
+    $('#users_table').DataTable({
+      select: true,
+      fixedHeader: true,
+      responsive: true,
+      columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            targets:   0
+        },{
+            orderable: false,
+            targets:   6
+        },{
+            orderable: false,
+            targets:   7
+        }],
+        select: {
+            style:    'multi',
+            selector: 'td:first-child'
+        },
+        order: [[ 1, 'asc' ]]
+    });
+
+    $(".users-table").on("click", "a", function(e){
+      var id = $(this).data('id');
+      var token = $('meta[name="csrf-token"]').attr('content');
+      e.preventDefault();
+      $.ajax({
+          url : 'user/' + id,
+          type: 'POST',
+          data: { 'id': id, '_token': token, '_method': 'PUT' },
+          error: function (data) {
+              console.log('Error:', data);
+          }
+      });
+    });
+
     var sidebar = $('.sidebar');
 
     //Add active class to nav-link based on url dynamically

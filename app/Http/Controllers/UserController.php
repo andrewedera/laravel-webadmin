@@ -18,6 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        //$users = factory(User::class, 500)->create();
         $users = User::All();
 
         return view('users', [ 'users' => $users]);
@@ -75,6 +76,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        dd(1);
         //
     }
 

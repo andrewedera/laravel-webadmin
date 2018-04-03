@@ -9,6 +9,44 @@
 //@import '~bootstrap/scss/bootstrap';
 @import '~mdi/scss/materialdesignicons';
 @import '~simple-line-icons/scss/simple-line-icons';
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+@import '~datatables.net-fixedheader-bs4/css/fixedHeader.bootstrap4.min.css';
+@import '~datatables.net-rowgroup-bs4/css/rowGroup.bootstrap4.min.css';
+@import '~datatables.net-select-bs4/css/select.bootstrap4.min.css';
+
+.content-wrapper {
+	position: relative;
+}
+
+.loader-wrapper {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+}
+.loader {
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+  border: 3px solid #ddd;
+  border-top: 3px solid #42a5f5;
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+}
+@-webkit-keyframes spin {
+  to {
+    border-top-color: #ec407a;
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  to {
+    border-top-color: #ec407a;
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
 
 .auth {
 	.form-control {
@@ -26,5 +64,40 @@
 		strong {
 			text-shadow: 0px 1px 5px rgb(0, 0, 0);
 		}
+	}
+}
+
+.table {
+	&.dataTable {
+		border-collapse: collapse !important;
+	}
+	td:focus,
+	th:focus {
+		outline: 0;
+	}
+	td {
+		border: none;
+		padding: 0.25rem 0.8375rem;
+	}
+	tr {
+		&.selected {
+			background: #424964!important;
+			td, th {
+				&.select-checkbox:after {
+				    font-family: Material Design Icons;
+				    content: '\F12C'!important;
+				    font-weight: bold!important;
+					text-shadow: none!important;
+				    margin-top: -9px!important;
+    				margin-left: -5px!important;
+				}
+			}
+		}
+	}
+}
+.page-link {
+	&:focus {
+	    box-shadow: none;
+	    border: 1px solid #dee2e6;
 	}
 }
