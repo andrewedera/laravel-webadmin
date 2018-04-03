@@ -21,7 +21,22 @@
 <body>
     <div id="app">
         <main>
-            @yield('content')
+            <div class="container-scroller">
+                @include('partials.nav')
+                <div class="container-fluid page-body-wrapper">
+                    @include('partials.sidebar')
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            @yield('content')
+                        </div>
+                        <!-- content-wrapper ends -->
+                    @include('partials.footer')
+                    </div>
+                    <!-- main-panel ends -->
+                </div>
+                <!-- page-body-wrapper ends -->
+            </div>
+            <!-- container-scroller -->
         </main>
     </div>
 
