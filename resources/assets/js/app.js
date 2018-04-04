@@ -16,40 +16,48 @@ require('datatables.net-select');
   'use strict';
   $(function() {
     $('#users_table').DataTable({
+      ajax: {
+        url: "http://webadmin.test/api/getUsers",
+        dataSrc: ''
+      },
+      columns: [
+        { defaultContent: '' },
+        { data: 'id' },
+        { data: 'username' },
+        { data: 'name' },
+        { data: 'email' },
+        { data: 'isActive' }
+      ],
       select: true,
       fixedHeader: true,
       responsive: true,
       columnDefs: [ {
             orderable: false,
+            searchable: false,
             className: 'select-checkbox',
             targets:   0
-        },{
-            orderable: false,
-            targets:   6
-        },{
-            orderable: false,
-            targets:   7
-        }],
-        select: {
-            style:    'multi',
-            selector: 'td:first-child'
-        },
-        order: [[ 1, 'asc' ]]
+        // },{
+        //     orderable: false,
+        //     targets:   6
+        // },{
+        //     orderable: false,
+        //     targets:   7
+      }],
+      select: {
+          style:    'multi',
+          selector: 'td:first-child'
+      },
+      order: [[ 1, 'asc' ]]
+    });
+    //https://www.gyrocode.com/articles/jquery-datatables-how-to-add-a-checkbox-column/
+    $(".users-table").on("click", "a.user-status", function(e){
+      e.preventDefault();
+      $('#user-form').attr('action', '/user/' + $(this).data('id'));
+      $('#user-form input[name="_status"]').val('true');
+      $('#user-form').submit();
     });
 
-    $(".users-table").on("click", "a", function(e){
-      var id = $(this).data('id');
-      var token = $('meta[name="csrf-token"]').attr('content');
-      e.preventDefault();
-      $.ajax({
-          url : 'user/' + id,
-          type: 'POST',
-          data: { 'id': id, '_token': token, '_method': 'PUT' },
-          error: function (data) {
-              console.log('Error:', data);
-          }
-      });
-    });
+    //var table = $('#example').DataTable();
 
     var sidebar = $('.sidebar');
 

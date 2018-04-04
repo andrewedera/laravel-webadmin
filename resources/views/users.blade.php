@@ -15,12 +15,10 @@
                 <th>Name</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Active</th>
-                <th></th>
-                <th></th>
+                <th>Status</th>
               </tr>
             </thead>
-            <tbody class="users-table">
+{{--             <tbody class="users-table">
             @foreach ($users as $user)
               <tr>
                 <td></td>
@@ -28,16 +26,23 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->username}}</td>
                 <td>{{$user->email}}</td>
-                <td><a href="#" data-id="{{$user->id}}">{!! ($user->isActive) ? '<label class="badge badge-teal">Active</label>' : '<label class="badge badge-danger">Inactive</label>' !!}</a></td>
+                <td><a href="#" class="user-status" data-id="{{$user->id}}">{!! ($user->isActive) ? '<label class="badge badge-teal">Active</label>' : '<label class="badge badge-danger">Inactive</label>' !!}</a></td>
                 <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
                 <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
               </tr>
             @endforeach
-            </tbody>
+            </tbody> --}}
           </table>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<form id="user-form" action="" method="POST" class="d-none">
+  {{ csrf_field() }}
+  @method('PUT')
+  <input type="hidden" name="_status">
+</form>
 @endsection
+

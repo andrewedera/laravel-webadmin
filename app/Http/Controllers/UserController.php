@@ -24,6 +24,15 @@ class UserController extends Controller
         return view('users', [ 'users' => $users]);
     }
 
+    public function getUsersAjax()
+    {
+        if(request()->ajax())
+        {
+            $user = User::get(['id','username','name','email','isActive']);
+            return response()->json($user);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -76,7 +85,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        dd(1);
+        if(request()->_status)
+        {
+            ($user->isActive) ? $user->isActive = false : $user->isActive = true;
+            $user->update();
+            $user->touch();
+        }
+        return redirect()->back();
         //
     }
 

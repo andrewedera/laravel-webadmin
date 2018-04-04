@@ -54911,38 +54911,39 @@ __webpack_require__("./node_modules/datatables.net-select/js/dataTables.select.j
     var _$$DataTable;
 
     $('#users_table').DataTable((_$$DataTable = {
+      ajax: {
+        url: "http://webadmin.test/api/getUsers",
+        dataSrc: ''
+      },
+      columns: [{ defaultContent: '' }, { data: 'id' }, { data: 'username' }, { data: 'name' }, { data: 'email' }, { data: 'isActive' }],
       select: true,
       fixedHeader: true,
       responsive: true,
       columnDefs: [{
         orderable: false,
+        searchable: false,
         className: 'select-checkbox',
         targets: 0
-      }, {
-        orderable: false,
-        targets: 6
-      }, {
-        orderable: false,
-        targets: 7
+        // },{
+        //     orderable: false,
+        //     targets:   6
+        // },{
+        //     orderable: false,
+        //     targets:   7
       }]
     }, _defineProperty(_$$DataTable, 'select', {
       style: 'multi',
       selector: 'td:first-child'
     }), _defineProperty(_$$DataTable, 'order', [[1, 'asc']]), _$$DataTable));
-
-    $(".users-table").on("click", "a", function (e) {
-      var id = $(this).data('id');
-      var token = $('meta[name="csrf-token"]').attr('content');
+    //https://www.gyrocode.com/articles/jquery-datatables-how-to-add-a-checkbox-column/
+    $(".users-table").on("click", "a.user-status", function (e) {
       e.preventDefault();
-      $.ajax({
-        url: 'user/' + id,
-        type: 'POST',
-        data: { 'id': id, '_token': token, '_method': 'PUT' },
-        error: function error(data) {
-          console.log('Error:', data);
-        }
-      });
+      $('#user-form').attr('action', '/user/' + $(this).data('id'));
+      $('#user-form input[name="_status"]').val('true');
+      $('#user-form').submit();
     });
+
+    //var table = $('#example').DataTable();
 
     var sidebar = $('.sidebar');
 
