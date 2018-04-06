@@ -26,6 +26,7 @@
         "datatables.net-rowgroup-bs4": "^1.0.2",
         "datatables.net-select-bs4": "^1.2.5",
         "mdi": "^2.2.43",
-        "simple-line-icons": "^2.4.1"
+        "simple-line-icons": "^2.4.1",
+        "sweetalert": "^2.1.0"
     }
 }

@@ -10461,6 +10461,10 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
   font-weight: 500;
 }
 
+.sidebar .profile-image img {
+  border-radius: 0 !important;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10473,6 +10477,11 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 
 .table.dataTable {
   border-collapse: collapse !important;
+}
+
+.table thead {
+  background: #58d8a3;
+  color: #fff;
 }
 
 .table td:focus,
@@ -10489,6 +10498,10 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
   background: #424964 !important;
 }
 
+.table tr.selected a {
+  color: #fff !important;
+}
+
 .table tr.selected td.select-checkbox:after,
 .table tr.selected th.select-checkbox:after {
   font-family: Material Design Icons;
@@ -10503,5 +10516,10 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
   -webkit-box-shadow: none;
           box-shadow: none;
   border: 1px solid #dee2e6;
+}
+
+.user-cancel,
+.user-edit {
+  font-size: 1.25rem;
 }
 

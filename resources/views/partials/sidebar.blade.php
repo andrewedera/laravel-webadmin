@@ -3,7 +3,7 @@
   <ul class="nav">
     <li class="nav-item nav-profile">
       <div class="nav-link">
-        <div class="profile-image"> <img src="images/faces/face4.jpg" alt="image"/> <span class="online-status online"></span> </div>
+        <div class="profile-image"> <img src="images/user.png" alt="image"/> <span class="online-status online"></span> </div>
         <div class="profile-name">
           <p class="name">Richard V.Welsh</p>
           <p class="designation">Manager</p>

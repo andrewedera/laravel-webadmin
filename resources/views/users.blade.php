@@ -16,6 +16,8 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>Status</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
 {{--             <tbody class="users-table">

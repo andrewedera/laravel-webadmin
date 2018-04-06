@@ -54,6 +54,14 @@
 	}
 }
 
+.sidebar {
+	.profile-image {
+		img {
+			border-radius: 0!important;
+		}
+	}
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -71,6 +79,10 @@
 	&.dataTable {
 		border-collapse: collapse !important;
 	}
+	thead {
+	    background: #58d8a3;
+    	color: #fff;
+	}
 	td:focus,
 	th:focus {
 		outline: 0;
@@ -81,6 +93,9 @@
 	}
 	tr {
 		&.selected {
+			a {
+				color: #fff!important;
+			}
 			background: #424964!important;
 			td, th {
 				&.select-checkbox:after {
@@ -100,4 +115,8 @@
 	    box-shadow: none;
 	    border: 1px solid #dee2e6;
 	}
+}
+.user-cancel,
+.user-edit {
+    font-size: 1.25rem;
 }
