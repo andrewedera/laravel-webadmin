@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -62,7 +64,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        // if(request()->ajax())
+        // {
+        //     return User::findOrFail($user->id);
+        // }
     }
 
     /**
@@ -73,7 +78,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if(request()->ajax())
+        {
+            return User::findOrFail($user->id);
+        }
         //
+        //return User::findOrFail($user);
     }
 
     /**
@@ -85,13 +95,32 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if(request()->_status)
-        {
-            ($user->isActive) ? $user->isActive = false : $user->isActive = true;
-            $user->update();
-            $user->touch();
+        if(request()->ajax()) {
+            $user = User::findOrFail($user->id);
+            if($request->_status == 'true') {
+                $user->isActive = ($user->isActive) ? false : true;
+                $user->update();
+                $user->touch();
+            }
+            else {
+                Validator::make($request->all(), [
+                    'name' => 'required|string|max:255',
+                    'username' => 'required|string|max:25|unique:users,' . $user->id,
+                    'email' => 'required|string|email|max:255|unique:users,' . $user->id,
+                    'password' => 'sometimes|required|string|min:6|confirmed',
+                ]);
+
+                $user->name = $request->name;
+                $user->username = $request->username;
+                $user->email = $request->email;
+                $user->isActive = ($request->status == 'Active') ? true : false;
+                if ($request->password) {
+                    $user->password = Hash::make($request->password);
+                }             
+                $user->update();
+                $user->touch();
+            }
         }
-        return redirect()->back();
         //
     }
 
@@ -103,6 +132,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
     }
 }

@@ -15,4 +15,4 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('user', 'UserController');
-Route::get('api/getUsers', 'UserController@getUsersAjax');
+Route::get('getUsers', 'UserController@getUsersAjax');

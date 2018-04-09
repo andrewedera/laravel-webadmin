@@ -10465,6 +10465,12 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
   border-radius: 0 !important;
 }
 
+.sidebar .mdi {
+  font-size: 1.5rem;
+  color: #745af2 !important;
+  margin-right: 1rem !important;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10521,5 +10527,12 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 .user-cancel,
 .user-edit {
   font-size: 1.25rem;
+}
+
+#userModal .modal-dialog {
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  top: 50%;
+  margin: 0 auto;
 }
 

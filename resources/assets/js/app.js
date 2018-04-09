@@ -16,9 +16,14 @@ require('sweetalert');
 (function($) {
   'use strict';
   $(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
     $('#users_table').DataTable({
       ajax: {
-        url: "/api/getUsers",
+        url: '/getUsers',
         dataSrc: ''
       },
       columns: [
@@ -48,12 +53,14 @@ require('sweetalert');
         },{
             orderable: false,
             targets:   6,
+            className: 'text-center',
             render: function(data){
-              return '<a href="#" data-userID="'+data+'" class="user-edit p-1 btn btn-outline-primary"><i class="mdi mdi-lead-pencil m-0"></i></a>';
+              return '<a href="#" data-userID="'+data+'" class="user-edit p-1 btn btn-outline-primary" data-toggle="modal" data-target="#userModal"><i class="mdi mdi-lead-pencil m-0"></i></a>';
             }
         },{
             orderable: false,
             targets:   7,
+            className: 'text-center',
             render: function(data){
               return '<a href="#" data-userID="'+data+'" class="user-cancel p-1 btn btn-outline-danger"><i class="mdi mdi-delete m-0"></i></a>';
             }
@@ -67,9 +74,8 @@ require('sweetalert');
     //https://www.gyrocode.com/articles/jquery-datatables-how-to-add-a-checkbox-column/
     $("#users_table").on("click", "a.user-status", function(e){
       e.preventDefault();
-      $('#user-form').attr('action', '/user/' + $(this).data('id'));
-      $('#user-form input[name="_status"]').val('true');
-      $('#user-form').submit();
+      var userID = $(this).data('id');
+      updateUser(userID, true);
     });
 
     $("#users_table").on("click", "a.user-cancel", function(e){
@@ -78,6 +84,58 @@ require('sweetalert');
       deleteUser(userID);
     });
 
+    $("#users_table").on("click", "a.user-edit", function(e){
+      e.preventDefault();
+      var userID = $(this).data('userid');
+      getUser(userID);
+    });
+
+    $('#userForm').on("submit", function (e) {
+      e.preventDefault();
+      var userID = $('#userForm #id').text();
+      updateUser(userID, false);
+    });
+
+    function getUser(userID) {
+      $.ajax({
+        url: "/user/" + userID + '/edit',
+        type: "GET",
+        success: function(data) {
+          $('#userModal #id').text(data.id);
+          $('#userModal #name').val(data.name);
+          $('#userModal #username').val(data.username);
+          $('#userModal #email').val(data.email);
+          $('#userModal #status').prop('selectedIndex', (data.isActive) ? 0 : 1);
+        },
+        error: function() {
+          swal("Oops", "Something went wrong!", "error");
+        }
+      })
+    }
+    function updateUser(userID, status) {
+      var data = $('#userForm').serializeArray();
+      data.push({name: '_method', value: 'PATCH'});
+      data.push({name: '_status', value: status});
+      $.ajax({
+        url: "/user/" + userID,
+        type: "POST",
+        data: data,
+        success: function() { 
+          sweetAlert({
+            title: "Updated!",
+            text: "Record Updated Successfully!",
+            icon: "success",
+            button: false
+          })
+          setTimeout(function() {
+             window.location.reload();
+          }, 500);
+        },
+        error: function() {
+          swal("Oops", "Something went wrong!", "error");
+        }
+      })
+    }
     function deleteUser(userID) {
         swal({
           title: "Are you sure",
@@ -85,11 +143,6 @@ require('sweetalert');
           icon: "warning",
           buttons: true,
           dangerMode: true,
-          // showCancelButton: true,
-          // closeOnConfirm: false,
-          // showLoaderOnConfirm: true,
-          // confirmButtonText: "Yes, delete it!",
-          // confirmButtonColor: "#ec6c62"
         })
         .then((willDelete) => {
           if (willDelete) {
@@ -99,20 +152,21 @@ require('sweetalert');
               data: {
                 '_method': 'DELETE'
               },
-            })
-            .done(function(data) {
-              sweetAlert({
-                title: "Deleted!",
-                text: "Record Deleted Successfully!",
-                type: "success"
+              success: function() { 
+                sweetAlert({
+                  title: "Deleted!",
+                  text: "Record Deleted Successfully!",
+                  icon: "success",
+                  button: false
+                }),
+                setTimeout(function() {
+                   window.location.reload();
+                }, 500);
               },
-              function() {
-                window.location.reload(true);
-              });
-            })
-            .error(function(data) {
+              error: function() {
                 swal("Oops", "Something went wrong!", "error");
-            });
+              }
+            })
           }
         });
     }
