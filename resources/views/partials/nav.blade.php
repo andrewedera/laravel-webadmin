@@ -8,6 +8,19 @@
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
       <span class="icon-menu"></span>
     </button>
+    <ul class="navbar-nav navbar-nav-right mr-5">
+    	<li class="nav-item dropdown">
+    		<a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-email-variant"></i>
+              <span class="count">7</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+				<div class="dropdown-item">
+					<p class="mb-0 font-weight-normal float-left">You have 7 captchas available</p>
+				</div>
+        	</div>
+    	</li>
+    </ul>
   </div>
 </nav>
 <!-- Navigation -->
