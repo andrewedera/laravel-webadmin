@@ -87,17 +87,11 @@
       <div class="col-12 grid-margin">
         <div class="card">
           <div class="card-body">
+          @if(!Auth::user()->isAdmin)
             <iframe src="{{$iframe}}" width="100%" height="350" frameborder="0" ></iframe>
+          @endif
           </div>
         </div>
       </div>
-    </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>
-$(function(){
-  $('iframe*').not('.g-recaptcha').hide();
-});
-</script>
-
-    
+    </div>    
 @endsection

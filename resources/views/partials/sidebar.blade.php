@@ -11,9 +11,10 @@
         </div>
       </div>
     </li>
+  @if(Auth::user()->isAdmin)
     <li class="nav-item"><a class="nav-link" href="{{ url('/') }}"><img class="menu-icon" src="images/menu_icons/01.png" alt="menu icon"><span class="menu-title">Dashboard</span></a></li>
     <li class="nav-item"><a class="nav-link" href="{{ route('user.index') }}"><i class="mdi mdi-account-multiple-plus mr-2"></i><span class="menu-title">User List</span></a></li>
-    <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html"><img class="menu-icon" src="images/menu_icons/03.png" alt="menu icon"><span class="menu-title">Buttons</span></a></li>
+  @endif
     <li class="nav-item purchase-button"><a class="btn d-block btn-lg btn-dark" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>

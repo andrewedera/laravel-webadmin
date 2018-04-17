@@ -20,6 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        //php artisan tinker
+        //factory(App\User::class, 1500)->create();
         //$users = factory(User::class, 500)->create();
         $users = User::All();
 
