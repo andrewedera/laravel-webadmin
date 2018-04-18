@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $url = 'https://www.kaplankomputing.com/blog/tutorials/recaptcha-php-demo-tutorial/';
-        return view('home', ['iframe' => $url]);
+        //$url = 'https://www.kaplankomputing.com/blog/tutorials/recaptcha-php-demo-tutorial/';
+        return view('home');
     }
 }

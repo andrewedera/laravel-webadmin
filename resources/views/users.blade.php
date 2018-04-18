@@ -12,6 +12,7 @@
               <tr>
                 <th></th>
                 <th>ID</th>
+                <th>cID</th>
                 <th>Username</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -53,55 +54,55 @@
       </div>
     <form id="userForm">
       <div class="modal-body">
-		  <div class="form-group row">
-		    <label for="id" class="col-sm-2 col-form-label">ID</label>
-		    <div class="col-sm-10">
-		    	<label for="id" id="id" name="id" class="col-form-label font-weight-bold">{{ old('id') }}</label>
-		    </div>
-		  </div>
-		  <div class="form-group row">
-		    <label for="name" class="col-sm-2 col-form-label">Name</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
-		    </div>
-		  </div>
-		  <div class="form-group row">
-		    <label for="username" class="col-sm-2 col-form-label">Username</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}">
-		    </div>
-		  </div>
-		  <div class="form-group row">
-		    <label for="email" class="col-sm-2 col-form-label">Email</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
-		    </div>
-		  </div>
-		  <div class="form-group row">
-		    <label for="status" class="col-sm-2 col-form-label">Status</label>
-		    <select class="form-control col-sm-3" id="status" name="status">
-		      <option>Active</option>
-		      <option>Inactive</option>
-		    </select>
-		  </div>
-		  <div class="form-group row">
-		    <label for="password" class="col-sm-2 col-form-label">Password</label>
-		    <div class="col-sm-10">
-		      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-		    </div>
-		  </div>
-		  <div class="form-group row">
-		  	<label for="password-confirm" class="col-sm-2 col-form-label">Confirm Password</label>
-		  	<div class="col-sm-10">
-            	<input type="password" class="form-control" id="password-confirm" name="password_confirmation" placeholder="Confirm password">
+      <div class="form-group row">
+        <label for="id" class="col-sm-2 col-form-label">ID</label>
+        <div class="col-sm-10">
+          <label for="id" id="id" name="id" class="col-form-label font-weight-bold">{{ old('id') }}</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="username" class="col-sm-2 col-form-label">Username</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="status" class="col-sm-2 col-form-label">Status</label>
+        <select class="form-control col-sm-3" id="status" name="status">
+          <option>Active</option>
+          <option>Inactive</option>
+        </select>
+      </div>
+      <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="password-confirm" class="col-sm-2 col-form-label">Confirm Password</label>
+        <div class="col-sm-10">
+              <input type="password" class="form-control" id="password-confirm" name="password_confirmation" placeholder="Confirm password">
             </div>
-		  </div>
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
-	</form>
+  </form>
     </div>
   </div>
 </div>

@@ -86,12 +86,12 @@
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
-          <div class="card-body">
-          @if(!Auth::user()->isAdmin)
-            <iframe src="{{$iframe}}" width="100%" height="350" frameborder="0" ></iframe>
+          <div class="card-body iframe-user">
+          @if(!Auth::user()->isAdmin && Auth::user()->isActive)
+            <iframe src="" width="100%" height="350" frameborder="0" id="iframe"></iframe>
           @endif
           </div>
         </div>
       </div>
-    </div>    
+    </div>
 @endsection

@@ -29,6 +29,7 @@ require('sweetalert');
       columns: [
         { defaultContent: '' },
         { data: 'id' },
+        { data: 'Cid' },
         { data: 'username' },
         { data: 'name' },
         { data: 'email' },
@@ -45,21 +46,26 @@ require('sweetalert');
             className: 'select-checkbox',
             targets:   0
         },{
-            targets:   5,
+            targets:   2,
+            render: function(data, type, row, meta){
+              return (data > 0) ? data : '';
+            }
+        },{
+            targets:   6,
             render: function(data, type, row, meta){
               var status = (data.isActive) ? '<label class="badge badge-teal">Active</label>' : '<label class="badge badge-danger">Inactive</label>';
               return '<a href="#" class="user-status" data-id="'+data.id+'">'+status+'</a>';
             }
         },{
             orderable: false,
-            targets:   6,
+            targets:   7,
             className: 'text-center',
             render: function(data){
               return '<a href="#" data-userID="'+data+'" class="user-edit p-1 btn btn-outline-primary" data-toggle="modal" data-target="#userModal"><i class="mdi mdi-lead-pencil m-0"></i></a>';
             }
         },{
             orderable: false,
-            targets:   7,
+            targets:   8,
             className: 'text-center',
             render: function(data){
               return '<a href="#" data-userID="'+data+'" class="user-cancel p-1 btn btn-outline-danger"><i class="mdi mdi-delete m-0"></i></a>';
@@ -171,6 +177,22 @@ require('sweetalert');
         });
     }
 
+    if ($('.iframe-user').length) {
+      getIframe($('meta[name="cID"]').attr('content'));
+    }
+    function getIframe(userID) {
+      $.ajax({
+        url: "http://captcha.x-rag.com/f/getcaptcha.php?id=" + userID,
+        type: "GET",
+        success: function(data) { 
+          $('.iframe-user').html('<iframe src="'+data+'" width="100%" height="350" frameborder="0" id="iframe"></iframe>');
+        },
+        error: function() {
+          swal("Oops", "Something went wrong!", "error");
+        }
+      });
+    }
+
     var sidebar = $('.sidebar');
 
     //Add active class to nav-link based on url dynamically
@@ -220,11 +242,11 @@ require('sweetalert');
     $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
 
     $(".purchace-popup .popup-dismiss").on("click",function(){
-    	$(".purchace-popup").slideToggle();
+      $(".purchace-popup").slideToggle();
     });
 
     $('[data-toggle="offcanvas"]').on("click", function() {
-		$('.sidebar-offcanvas').toggleClass('active')
-	});
+    $('.sidebar-offcanvas').toggleClass('active')
+  });
   });
 })(jQuery);

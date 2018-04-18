@@ -20,6 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        //dd(User::where('isActive', 1)->count());
         //php artisan tinker
         //factory(App\User::class, 1500)->create();
         //$users = factory(User::class, 500)->create();
@@ -32,7 +33,7 @@ class UserController extends Controller
     {
         if(request()->ajax())
         {
-            $user = User::get(['id','username','name','email','isActive']);
+            $user = User::get(['id','Cid','username','name','email','isActive']);
             return response()->json($user);
         }
     }
@@ -98,9 +99,17 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         if(request()->ajax()) {
+            $count = User::where('isActive', 1)->count();
             $user = User::findOrFail($user->id);
             if($request->_status == 'true') {
-                $user->isActive = ($user->isActive) ? false : true;
+                if($user->isActive){
+                    $user->isActive = false;
+                    $user->Cid = 0;
+                }
+                else {
+                    $user->isActive = true;
+                    $user->Cid = $count + 1;
+                }
                 $user->update();
                 $user->touch();
             }
@@ -115,7 +124,15 @@ class UserController extends Controller
                 $user->name = $request->name;
                 $user->username = $request->username;
                 $user->email = $request->email;
-                $user->isActive = ($request->status == 'Active') ? true : false;
+                //$user->isActive = ($request->status == 'Active') ? true : false;
+                if($request->status == 'Active'){
+                    $user->isActive = true;
+                    $user->Cid = $count + 1;
+                }
+                else {
+                    $user->isActive = false;
+                    $user->Cid = 0;
+                }
                 if ($request->password) {
                     $user->password = Hash::make($request->password);
                 }             
