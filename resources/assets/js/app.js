@@ -177,7 +177,7 @@ require('sweetalert');
         });
     }
 
-    if ($('.iframe-user').length) {
+    if ($('#iframe').length) {
       getIframe($('meta[name="cID"]').attr('content'));
     }
     function getIframe(userID) {
